@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Admin;
+use App\Models\Staff;
+use App\Models\User;
+
 return [
 
     /*
@@ -40,6 +44,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staffs',
+        ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users'
+        ]
     ],
 
     /*
@@ -62,8 +78,16 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class,
+        ],
+        'staffs' => [
+            'driver' => 'eloquent',
+            'model' => Staff::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

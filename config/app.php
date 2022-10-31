@@ -15,8 +15,14 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Nwanze Gerald'),
 
+    'domains' => [
+        'main' => 'portfolio.test',
+        'auth' => 'auth.portfolio.test',
+        'blog' => 'blog.portfolio.test',
+        'dashboard' => 'dashboard.portfolio.test'
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -54,7 +60,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://portfolio.test'),
 
     'asset_url' => env('ASSET_URL'),
 

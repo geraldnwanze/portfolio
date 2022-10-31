@@ -33,8 +33,39 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+            Route::prefix('auth')
+                ->as('auth.')
+                ->middleware('web', 'auth-guard')
+                ->group(base_path('routes/auth.php'));
+
+            Route::prefix('user')
+                ->as('user.')
+                ->middleware(['web', 'auth:user'])
+                ->group(base_path('routes/user.php'));
+
+            Route::prefix('staff')
+                ->as('staff.')
+                ->middleware(['web', 'auth:staff'])
+                ->group(base_path('routes/staff.php'));
+
+            Route::prefix('admin')
+                ->as('admin.')
+                ->middleware(['web', 'auth:admin'])
+                ->group(base_path('routes/admin.php'));
+
+            Route::prefix('blog')
+                ->as('blog.')
+                ->middleware('web')
+                ->group(base_path('routes/blog.php'));
+
+            Route::domain(config('app.domains.main'))
+                ->as('main.')
+                ->middleware('web')
+                ->group(base_path('routes/main.php'));
+
+            Route::fallback(function() {
+                return view('errors.404');
+            });
         });
     }
 

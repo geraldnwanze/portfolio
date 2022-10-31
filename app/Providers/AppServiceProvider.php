@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->autoload();
+    }
+
+    public function autoload()
+    {
+        if (file_exists(app_path('Helpers/email.php'))) {
+            require_once app_path('Helpers/email.php');
+        }
     }
 }
