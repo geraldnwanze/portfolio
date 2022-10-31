@@ -20,7 +20,7 @@ class StaffSeeder extends Seeder
         Staff::create(
             [
                 'name' => $faker->name,
-                'email' => $faker->email,
+                'email' => 'staff@portfolio.com',
                 'password' => 123456
             ]
         );

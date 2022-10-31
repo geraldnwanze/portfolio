@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         User::create(
             [
                 'name' => $faker->name,
-                'email' => $faker->email,
+                'email' => 'user@portfolio.com',
                 'password' => 123456
             ]
         );
