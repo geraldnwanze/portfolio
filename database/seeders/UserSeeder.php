@@ -24,5 +24,13 @@ class UserSeeder extends Seeder
                 'password' => 123456
             ]
         );
+
+        for ($i = 0; $i < 100; $i++) {
+            User::create([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => 123456
+            ]);
+        }
     }
 }

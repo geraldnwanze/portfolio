@@ -1,6 +1,5 @@
-<h1>welcome staff</h1>
+@extends('layouts.dashboard')
 
-<form action="{{ route('auth.logout') }}" method="post">
-    @csrf
-    <button>logout</button>
-</form>
+@section('content')
+    
+@endsection
