@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
-use App\Models\Admin;
-use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,12 +11,16 @@ class AuthController extends Controller
     public function login(AuthRequest $request)
     {
         $credentials = $request->only('email','password');
-        
-        if (!Auth::guard($request->guard)->attempt($credentials)) {
-            return back()->with('error', 'invalid credentials');
+        if (User::where('email', $request->email)->exists()) {
+            if ($this->active()) {
+                if (Auth::attempt($credentials)) {
+                    return redirect()->route(auth()->user()->role.'.index');
+                }
+                return back()->with('error', 'invalid credentials');
+            }
+            return back()->with('error', 'account is restricted');
         }
-        // dd($request->guard.'.index');
-        return redirect()->route($request->guard.'.index');
+        return back()->with('error', 'invalid credentials');
     }
 
     public function logout()
@@ -26,5 +28,10 @@ class AuthController extends Controller
         Auth::logout();
         session()->regenerate();
         return redirect()->route('auth.index');
+    }
+
+    private function active()
+    {
+        return User::where('email', request()->email)->where('status', true)->exists() ? true : false;
     }
 }

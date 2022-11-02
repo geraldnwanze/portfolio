@@ -13,8 +13,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    protected $guard = 'user';
-
     protected $fillable = ['email', 'password'];
 
     public function setPasswordAttribute($password)
