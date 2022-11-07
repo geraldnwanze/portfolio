@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PageSettingRequest;
 use App\Models\PageSetting;
 use App\Services\ListService;
 use Illuminate\Http\Request;
@@ -38,8 +39,8 @@ class AdminController extends Controller
         return view('dashboard.admin.settings.page.home.hero', compact('page'));
     }
 
-    public function updateHero(PageSetting $pageSetting)
+    public function updateHero(PageSetting $pageSetting, PageSettingRequest $request)
     {
-        dd($pageSetting);
+        dd($pageSetting, $request->all());
     }
 }
