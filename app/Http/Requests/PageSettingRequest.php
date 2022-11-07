@@ -24,7 +24,7 @@ class PageSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'welcome' => 'required'
         ];
     }
 }
