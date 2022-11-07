@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\PageSetting;
 use App\Models\User;
 
 class ListService 
@@ -34,6 +35,11 @@ class ListService
     public static function allAdminsPaginated($number = 10)
     {
         return User::where('role', 'admin')->paginate($number);
+    }
+
+    public static function homePage()
+    {
+        return PageSetting::where('page', 'home')->firstOrFail();
     }
 }
 

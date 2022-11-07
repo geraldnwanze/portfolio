@@ -143,33 +143,37 @@
                             <a href="#"><i class="fa fa-cogs"></i> <span>Settings</span></a>
                             <ul class="side-header-sub-menu">
                                 <li class="has-sub-menu">
-                                    <a href="#"><i class="fa fa-cogs"></i> <span>Page</span></a>
+                                    <a href="#"><i class="fa fa-cogs"></i> <span>Pages</span></a>
                                     <ul class="side-header-sub-menu">
-                                        <li>
-                                            <a href="#"><i class="fa fa-home"></i> <span>Hero</span></a>
+                                        <li class="has-sub-menu">
+                                            <a href="#"><i class="fa fa-home"></i> <span>Home</span></a>
+
+                                            <ul class="side-header-sub-menu">
+                                                <li>
+                                                    <a href="{{ route('admin.settings.page.home.hero') }}"><i class="fa fa-home"></i> <span>Hero</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-info"></i> <span>Features</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-folder"></i> <span>Portfolio</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-file-pdf-o"></i> <span>Resume</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-book"></i> <span>Blog</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-address-book"></i> <span>Contact</span></a>
+                                                </li>
+                                                <li><a href="{{ route('admin.settings.page.home.preview') }}"><i class="fa fa-television"></i> <span>Preview</span></a></li>
+                                            </ul>
                                         </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-info"></i> <span>Features</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-folder"></i> <span>Portfolio</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-file-pdf-o"></i> <span>Resume</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-book"></i> <span>Blog</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-address-book"></i> <span>Contact</span></a>
-                                        </li>
+                                        <li><a href="#"><i class="fa fa-book"></i> <span>Blog</span></a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#"><i class="fa fa-cog"></i> <span>Preview</span></a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-book"></i> <span>Blog</span></a>
                         </li>
                         <li>
                             <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> <span>Users</span></a>
