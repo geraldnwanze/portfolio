@@ -32,7 +32,7 @@ class AuthRequest extends FormRequest
     public function login()
     {
         return [
-            'email' => 'required|email|email:dns',
+            'email' => 'required|email',
             'password' => 'required|min:6|max:20',
             // 'g-recaptcha-response' => 'required'
         ];

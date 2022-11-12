@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             StaffSeeder::class,
             UserSeeder::class,
-            PageSettingSeeder::class
         ]);
     }
 }
