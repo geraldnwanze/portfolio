@@ -153,7 +153,7 @@
                                                     <a href="{{ route('admin.settings.page.home.hero') }}"><i class="fa fa-home"></i> <span>Hero</span></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i class="fa fa-info"></i> <span>Features</span></a>
+                                                    <a href="{{ route('admin.settings.page.home.features') }}"><i class="fa fa-info"></i> <span>Features</span></a>
                                                 </li>
                                                 <li>
                                                     <a href="#"><i class="fa fa-folder"></i> <span>Portfolio</span></a>

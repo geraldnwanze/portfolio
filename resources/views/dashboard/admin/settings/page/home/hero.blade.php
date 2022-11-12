@@ -43,7 +43,7 @@
                                 <div class="col-lg-6">
                                     <div class="col-lg-12 mb-30">
                                         <label for="">Job 3</label>
-                                        <input type="text" class="form-control" placeholder="job_3" name="intro" value="{{ $page->data['hero']['job_3'] }}" required>
+                                        <input type="text" class="form-control" placeholder="job_3" name="job_3" value="{{ $page->data['hero']['job_3'] }}" required>
                                     </div>
                                 </div>
 
