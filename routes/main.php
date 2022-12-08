@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'main.index')->name('index');
+Route::get('/', [PageController::class, 'home'])->name('index');

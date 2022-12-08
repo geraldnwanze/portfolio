@@ -28,7 +28,7 @@ class AdminSeeder extends Seeder
             ]
         );
 
-        for ($i = 0; $i < 11; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             User::create([
                 'role' => 'admin',
                 'name' => $faker->name,

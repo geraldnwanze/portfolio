@@ -27,7 +27,7 @@ class StaffSeeder extends Seeder
             ]
         );
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             User::create([
                 'role' => 'staff',
                 'name' => $faker->name,

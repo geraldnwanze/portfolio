@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             StaffSeeder::class,
             UserSeeder::class,
+            HeroSeeder::class,
+            SocialSeeder::class,
+            FeatureSeeder::class
         ]);
     }
 }

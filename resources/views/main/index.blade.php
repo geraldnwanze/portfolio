@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+
+@php 
+$professions = json_decode($hero->professions)
+@endphp 
         <!-- Start Slider Area -->
         <div id="home" class="rn-slider-area">
             <div class="slide slider-style-1">
@@ -9,36 +13,37 @@
                         <div class="order-2 order-lg-1 col-lg-7 mt_md--50 mt_sm--50 mt_lg--30">
                             <div class="content">
                                 <div class="inner">
-                                    <span class="subtitle">{{ $setting->data['hero']['welcome'] }}</span>
-                                    <h1 class="title">Hi, I’m <span>{{ config('app.name') }}</span><br>
+                                    <span class="subtitle">{{ $hero->welcome }}</span>
+                                    <h1 class="title">{{ $hero->intro }} <span>{{ config('app.name') }}</span><br>
                                         <span class="header-caption" id="page-top">
                                             <!-- type headline start-->
                                             <span class="cd-headline clip is-full-width">
                                                 <span>a </span>
                                         <!-- ROTATING TEXT -->
                                         <span class="cd-words-wrapper">
-                                                    <b class="is-visible">{{ $setting->data['hero']['job_1'] }}</b>
-                                                    <b class="is-hidden">{{ $setting->data['hero']['job_2'] }}</b>
-                                                    <b class="is-hidden">{{ $setting->data['hero']['job_3'] }}</b>
-                                                </span>
+                                            @for ($i = 0; $i < count($professions); $i++)
+                                            <b class="{{ $i == 0 ? 'is-visible' : 'is-hidden' }}">{{ $professions[$i] }}</b>
+                                            @endfor
                                         </span>
                                         <!-- type headline end -->
                                         </span>
                                     </h1>
 
                                     <div>
-                                        <p class="description">{{ $setting->data['hero']['bio'] }}</p>
+                                        <p class="description">{{ $hero->bio }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-12">
                                         <div class="social-share-inner-left">
-                                            <span class="title">{{ $setting->data['hero']['social_text'] }}</span>
+                                            <span class="title">connect with me on</span>
                                             <ul class="social-share d-flex liststyle">
-                                                <li class="twitter"><a href="#"><i data-feather="twitter"></i></a>
-                                                </li>
-                                                <li class="linkedin"><a href="#"><i data-feather="linkedin"></i></a>
-                                                </li>
+                                                @forelse ($socials as $social)
+                                                    <li class="{{ $social->name }}"><a href="{{ $social->url }}" rel="noreferrer" target="_blank"><i data-feather="{{ $social->name }}"></i></a></li>
+                                                    
+                                                @empty
+                                                    <li>no socials</li>
+                                                @endforelse
                                             </ul>
                                         </div>
                                     </div>
@@ -72,27 +77,28 @@
                 </div>
                 <div class="row row--25 mt_md--10 mt_sm--10">
 
-                    @forelse ($setting->data['features'] as $feature)
-                    <!-- Start Single Service -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="100" data-aos-once="true" class="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-service">
-                            <div class="inner">
-                                <div class="icon">
-                                    <i data-feather="{{ $feature['icon'] }}"></i>
+                    @forelse ($features as $feature)
+                        <!-- Start Single Service -->
+                        <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="100" data-aos-once="true" class="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30">
+                            <div class="rn-service">
+                                <div class="inner">
+                                    <div class="icon">
+                                        <i data-feather="{{ $feature->icon }}"></i>
+                                    </div>
+                                    <div class="content">
+                                        <h4 class="title"><a href="#">{{ $feature->title }}</a></h4>
+                                        <p class="description">{{ $feature->description }}</p>
+                                        {{-- <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a> --}}
+                                    </div>
                                 </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">{{ $feature['title'] }}</a></h4>
-                                    <p class="description">{{ $feature['description'] }}</p>
-                                    {{-- <a class="read-more-button" href="#"><i class="feather-arrow-right"></i></a> --}}
-                                </div>
+                                <a class="over-link" href="#"></a>
                             </div>
-                            <a class="over-link" href="#"></a>
                         </div>
-                    </div>
-                    <!-- End SIngle Service -->
-                    @empty 
-                        <h1>nothing to see</h1>
+                        <!-- End SIngle Service -->
+                    @empty
+                        <h2>No Data Found</h2>
                     @endforelse
+
                 </div>
             </div>
         </div>
@@ -126,8 +132,9 @@
                                             <a href="javascript:void(0)">nest js</a>
                                         </div>
                                         <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                        600</span>
+                                            <span class="mr--5"><a href="javascript:void(0)"><i class="feather-thumbs-up"></i></a>600 </span>
+                                            <span class="mr--5"><a href="javascript:void(0)"><i class="feather-thumbs-down"></i></a>90 </span>
+                                            <span><a href="javascript:void(0)"><i class="feather-message-square"></i></a>500 </span>
                                         </div>
                                     </div>
                                     <h4 class="title"><a href="javascript:void(0)">Rest API development for mobile and web apps <i class="feather-arrow-up-right"></i></a></h4>
@@ -137,31 +144,6 @@
                     </div>
                     <!-- End Single Portfolio -->
 
-                    <!-- Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true" class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="{{ asset('main/images/portfolio/portfolio-02.jpg') }}" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">react js</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                        750</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a href="javascript:void(0)">web app design<i class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Portfolio -->
                 </div>
             </div>
         </div>
@@ -923,8 +905,11 @@
                                     <div class="social-area">
                                         <div class="name">CONNECT WITH ME ON</div>
                                         <div class="social-icone">
-                                            <a href="#"><i data-feather="twitter"></i></a>
-                                            <a href="#"><i data-feather="linkedin"></i></a>
+                                            @forelse ($socials as $social)
+                                                <a href="{{ $social->url }}" rel="noreferrer" target="_blank"><i data-feather="{{ $social->name }}"></i></a>
+                                            @empty
+                                                no socials
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
